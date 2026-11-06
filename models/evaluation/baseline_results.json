@@ -1,0 +1,44 @@
+{
+    "dataset": {
+        "training_records": 79996,
+        "testing_records": 20000
+    },
+    "level_0": {
+        "accuracy": 0.87945,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "confusion_matrix": [
+            [
+                17589,
+                0
+            ],
+            [
+                2411,
+                0
+            ]
+        ],
+        "precision_at_k": 0.17,
+        "k": 100,
+        "model": "Level 0 - Global Majority"
+    },
+    "level_1": {
+        "accuracy": 0.8873,
+        "precision": 0.6796338672768879,
+        "recall": 0.12318540024885939,
+        "f1_score": 0.20856741573033707,
+        "confusion_matrix": [
+            [
+                17449,
+                140
+            ],
+            [
+                2114,
+                297
+            ]
+        ],
+        "precision_at_k": 0.98,
+        "k": 100,
+        "model": "Level 1 - Agency Majority"
+    }
+}
