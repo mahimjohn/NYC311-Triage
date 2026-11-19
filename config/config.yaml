@@ -8,17 +8,17 @@ project:
 data_sources:
   dataset_name: "311 Service Requests from 2020 to Present"
   dataset_id: "erm2-nwe9"
-  source_url: "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9"
+  source_url: "https://data.cityofnewyork.com/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9"
 
   api_endpoints:
-    json: "https://data.cityofnewyork/api/v3/views/erm2-nwe9/query.json"
-    csv: "https://data.cityofnewyork/api/v3/views/erm2-nwe9/query.csv"
+    json: "https://data.cityofnewyork.us/resource/erm2-nwe9.json"
+    csv: "https://data.cityofnewyork.us/resource/erm2-nwe9.csv"
 
-  soda_api_url: "https://data.cityofnewyork/resource/erm2-nwe9.json"
+soda_api_url: "https://data.cityofnewyork.us/resource/erm2-nwe9.json"
 
 ingestion:
-  start_date: "2025-01-01T00:00:00"
-  end_date: "2026-01-01T00:00:00"
+  start_date: "2020-01-01T00:00:00"
+  end_date: "2026-11-20T00:00:00"
 
   date_column: "created_date"
   page_size: 10000
