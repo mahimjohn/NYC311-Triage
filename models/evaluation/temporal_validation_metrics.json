@@ -1,0 +1,45 @@
+{
+    "accuracy": 0.8984738201455741,
+    "precision": 0.512680258577822,
+    "recall": 0.9107773851590106,
+    "f1": 0.6560610881323576,
+    "roc_auc": 0.9634063671083055,
+    "confusion_matrix": [
+        [
+            17071,
+            1960
+        ],
+        [
+            202,
+            2062
+        ]
+    ],
+    "classification_report": "              precision    recall  f1-score   support\n\n           0       0.99      0.90      0.94     19031\n           1       0.51      0.91      0.66      2264\n\n    accuracy                           0.90     21295\n   macro avg       0.75      0.90      0.80     21295\nweighted avg       0.94      0.90      0.91     21295\n",
+    "dataset_rows": 106474,
+    "train_rows": 85179,
+    "test_rows": 21295,
+    "cutoff_date": "2025-07-01 23:02:56.400000",
+    "train_start": "2020-01-07 22:41:56",
+    "train_end": "2025-07-01 23:02:54",
+    "test_start": "2025-07-01 23:03:00",
+    "test_end": "2026-11-18 01:48:04",
+    "categorical_features": [
+        "agency",
+        "complaint_type",
+        "descriptor",
+        "location_type",
+        "incident_zip",
+        "borough",
+        "city"
+    ],
+    "numeric_features": [
+        "latitude",
+        "longitude",
+        "created_year",
+        "created_month",
+        "created_day_of_week",
+        "created_hour",
+        "is_weekend"
+    ],
+    "split_strategy": "chronological_80_20"
+}

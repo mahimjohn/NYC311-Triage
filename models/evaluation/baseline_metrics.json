@@ -1,0 +1,64 @@
+{
+    "dummy_classifier": {
+        "model": "DummyClassifier",
+        "accuracy": 0.9012444235736088,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "confusion_matrix": [
+            [
+                19192,
+                0
+            ],
+            [
+                2103,
+                0
+            ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n           0       0.90      1.00      0.95     19192\n           1       0.00      0.00      0.00      2103\n\n    accuracy                           0.90     21295\n   macro avg       0.45      0.50      0.47     21295\nweighted avg       0.81      0.90      0.85     21295\n"
+    },
+    "logistic_regression": {
+        "model": "LogisticRegression",
+        "accuracy": 0.898708617046255,
+        "precision": 0.4932466233116558,
+        "recall": 0.9377080361388492,
+        "f1_score": 0.646451401409605,
+        "confusion_matrix": [
+            [
+                17166,
+                2026
+            ],
+            [
+                131,
+                1972
+            ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n           0       0.99      0.89      0.94     19192\n           1       0.49      0.94      0.65      2103\n\n    accuracy                           0.90     21295\n   macro avg       0.74      0.92      0.79     21295\nweighted avg       0.94      0.90      0.91     21295\n",
+        "roc_auc": 0.9704254447436789
+    },
+    "dataset_rows": 106474,
+    "train_rows": 85179,
+    "test_rows": 21295,
+    "features": {
+        "categorical": [
+            "agency",
+            "complaint_type",
+            "descriptor",
+            "location_type",
+            "incident_zip",
+            "borough",
+            "city"
+        ],
+        "numeric": [
+            "latitude",
+            "longitude",
+            "created_year",
+            "created_month",
+            "created_day_of_week",
+            "created_hour",
+            "is_weekend"
+        ]
+    },
+    "random_state": 42,
+    "test_size": 0.2
+}

@@ -1,0 +1,50 @@
+{
+    "experiment": "temporal_model_comparison",
+    "cutoff_date": "2025-07-01 23:02:56.400000",
+    "train_rows": 85179,
+    "test_rows": 21295,
+    "test_start": "2025-07-01 23:03:00",
+    "test_end": "2026-11-18 01:48:04",
+    "features": [
+        "agency",
+        "complaint_type",
+        "descriptor",
+        "location_type",
+        "incident_zip",
+        "borough",
+        "city",
+        "latitude",
+        "longitude",
+        "created_year",
+        "created_month",
+        "created_day_of_week",
+        "created_hour",
+        "is_weekend"
+    ],
+    "models": {
+        "Logistic Regression": {
+            "accuracy": 0.8984738201455741,
+            "precision": 0.512680258577822,
+            "recall": 0.9107773851590106,
+            "f1": 0.6560610881323576,
+            "roc_auc": 0.9634063671083055,
+            "training_seconds": 0.34
+        },
+        "Random Forest": {
+            "accuracy": 0.9319088988025358,
+            "precision": 0.6557000765110941,
+            "recall": 0.7570671378091873,
+            "f1": 0.7027470274702747,
+            "roc_auc": 0.9639917635778559,
+            "training_seconds": 2.89
+        },
+        "Extra Trees": {
+            "accuracy": 0.9294200516553182,
+            "precision": 0.6976623376623377,
+            "recall": 0.5931978798586572,
+            "f1": 0.6412031511100501,
+            "roc_auc": 0.9540483789420756,
+            "training_seconds": 4.87
+        }
+    }
+}
