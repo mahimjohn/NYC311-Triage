@@ -1,104 +1,120 @@
+
 project:
-          name: "NYC 311 Service Request Triage and Resolution-Time Prediction System"
-          version: "1.0.0"
-          environment: "development"
-          config_schema_version: "1.0"
+  name: "NYC 311 Service Request Triage and Resolution-Time Prediction System"
+  version: "1.0.0"
+  environment: "development"
+  config_schema_version: "1.0"
 
 data_sources:
-          dataset_name: "311 Service Requests from 2020 to Present"
-          dataset_id: "erm2-nwe9"
-          source_url: "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9"
-          api_url: "https://data.cityofnewyork.us/resource/erm2-nwe9.json"
+  dataset_name: "311 Service Requests from 2020 to Present"
+  dataset_id: "erm2-nwe9"
+  source_url: "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9"
+
+  api_endpoints:
+    json: "https://data.cityofnewyork/api/v3/views/erm2-nwe9/query.json"
+    csv: "https://data.cityofnewyork/api/v3/views/erm2-nwe9/query.csv"
+
+  soda_api_url: "https://data.cityofnewyork/resource/erm2-nwe9.json"
 
 ingestion:
-          start_date: "2025-01-01T00:00:00"
-          end_date: "2026-01-01T00:00:00"
-          page_size: 50000
-          max_rows: 100000
-          request_timeout: 30
-          retry_count: 3
-          retry_delay: 5
+  start_date: "2025-01-01T00:00:00"
+  end_date: "2026-01-01T00:00:00"
+
+  date_column: "created_date"
+  page_size: 10000
+  max_rows: 100000
+
+  request_timeout: 30
+  retry_count: 3
+  retry_delay: 5
+  exponential_backoff: true
 
 data:
-          required_columns:
-            - unique_key
-            - created_date
-            - agency
-            - agency_name
-            - complaint_type
-            - descriptor
-            - location_type
-            - incident_zip
-            - borough
-            - city
-            - latitude
-            - longitude
-            - closed_date
-                          
-          prediction_time_columns: 
-            - unique_key
-            - created_date
-            - agency
-            - agency_name
-            - complaint_type
-            - descriptor
-            - location_type
-            - incident_zip
-            - borough
-            - city
-            - latitude
-            - longitude
-          target_column: "closed_date"
-          identifier_columns: 
-            - unique_key
+  required_columns:
+    - unique_key
+    - created_date
+    - agency
+    - complaint_type
+    - borough
+
+  optional_columns:
+    - agency_name
+    - descriptor
+    - location_type
+    - incident_zip
+    - city
+    - latitude
+    - longitude
+    - closed_date
+
+  identifier_columns:
+    - unique_key
+
+  raw_outcome_column: "closed_date"
+  derived_target_column: "delay_flag"
+
+  prediction_time_columns:
+    - created_date
+    - agency
+    - complaint_type
+    - descriptor
+    - location_type
+    - incident_zip
+    - borough
+    - city
+    - latitude
+    - longitude
 
 target:
-          column: closed_date
-          type: binary
-          threshold_days: 7
-          positive_class: 1
-          negative_class: 0
+  column: "delay_flag"
+  type: "binary"
+  source_column: "closed_date"
+  duration_column: "resolution_days"
+  threshold_days: 7
+  positive_class: 1
+  negative_class: 0
+  positive_label: "Delayed"
+  negative_label: "Not delayed"
 
 paths:
-          data:
-              raw: "data/raw"
-              processed: "data/processed"
-              snapshots: "data/snapshots"
+  data:
+    raw: "data/raw"
+    processed: "data/processed"
+    snapshots: "data/snapshots"
 
-          models:
-              artifacts: "models/artifacts"
+  models:
+    artifacts: "models/artifacts"
+    evaluation: "models/evaluation"
 
-          logs: "logs"
-
-          sql: "sql"
+  logs: "logs"
+  sql: "sql"
 
 database:
-          host:
-          port:
-          database_name:
-          schema:
+  host: "${DB_HOST}"
+  port: 5432
+  database_name: "${DB_NAME}"
+  schema: "public"
 
 model:
-          name:
-          version:
-          algorithm:
-          artifact_path:
-          random_state:
+  name: "nyc311_delay_classifier"
+  version: "1.0.0"
+  algorithm: null
+  artifact_path: "models/artifacts"
+  random_state: 42
 
 prediction:
-          threshold:
-          fallback_enabled:
-          fallback_strategy: "level_0_majority_class"
+  probability_threshold: 0.5
+  fallback_enabled: true
+  fallback_strategy: "level_0_majority_class"
 
 logging:
-          level: "INFO"
-          file: "application.log"
+  level: "INFO"
+  file: "logs/application.log"
 
 application:
-          api:
-            host: "0.0.0.0"
-            port: 8000
+  api:
+    host: "0.0.0.0"
+    port: 8000
 
-          streamlit:
-            port: 8501
-
+  frontend:
+    type: "html_css_javascript"

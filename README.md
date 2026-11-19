@@ -1,49 +1,41 @@
-# NYC 311 Service Request Triage and Resolution-Time Prediction System
+# NYC 311 Service Request Triage & Resolution-Time Prediction
 
 ## Overview
 
-A production-oriented machine learning and decision-support system
-for analyzing NYC 311 service requests and identifying requests
-that are likely to take more than seven days to resolve.
+An end-to-end machine learning application designed to analyze NYC 311 service requests and identify requests at high risk of taking longer than seven days to resolve.
 
-## Problem
+The system aims to help operational analysts prioritize service requests through data-driven risk predictions and interactive analytics.
 
-Municipal operations teams receive a large volume of 311 service
-requests. The system helps analysts identify requests with a higher
-likelihood of delayed resolution so that they can prioritize
-operational attention.
+## Objectives
 
-## Core Prediction
-
-Predict whether a newly created service request will take more than
-7 days to resolve.
-
-## Primary User
-
-Municipal Operations Analyst.
+- Ingest service request data from NYC Open Data.
+- Validate and preprocess data through reproducible pipelines.
+- Engineer features available at request creation time.
+- Train and evaluate machine learning models.
+- Predict the likelihood of a service request exceeding seven days to resolve.
+- Store requests and prediction records in PostgreSQL.
+- Expose predictions and analytics through a FastAPI backend.
+- Provide an interactive dashboard using HTML, CSS, and JavaScript.
 
 ## Technology Stack
 
 - Python
-- Pandas / NumPy
+- Pandas and NumPy
 - Scikit-learn
 - PostgreSQL
+- SQLAlchemy
 - FastAPI
-- Streamlit
-- Plotly / Folium
-- Power BI / Tableau
-- Git / GitHub
+- HTML, CSS, JavaScript
+- Git and GitHub
 
-## Architecture
+## Project Status
 
-NYC Open Data
-→ Data Ingestion
-→ Data Processing
-→ PostgreSQL
-→ ML Prediction Service
-→ FastAPI
-→ Streamlit
+Under active development.
 
-## Status
+## Data Source
 
-🚧 Under Development
+NYC Open Data — 311 Service Requests.
+
+## Disclaimer
+
+This project is an analytical prototype and is not an official NYC government system.

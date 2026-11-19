@@ -1,31 +1,38 @@
-# Virtual environment
-.venv/
-
-# Environment variables
-.env
 
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
+.venv/
+venv/
 
-# Jupyter
-.ipynb_checkpoints/
+# Environment secrets
+.env
+.env.*
+!.env.example
 
 # Data
 data/raw/*
 data/processed/*
 data/snapshots/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/snapshots/.gitkeep
 
 # ML artifacts
-models/*.pkl
-models/*.joblib
+models/artifacts/*
+models/evaluation/*.pkl
+models/evaluation/*.joblib
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
 
 # Logs
-logs/*
-*.log
-
-# OS
-.DS_Store
+logs/*.log
 
 # IDE
 .vscode/
+.idea/
